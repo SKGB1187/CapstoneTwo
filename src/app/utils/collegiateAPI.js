@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = '05ae47c2-0eee-4ddf-a4e9-d85424e48e16';
+const API_KEY = process.env.NEXT_PUBLIC_COLLEGIATE_API_KEY;
 const BASE_URL = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/`;
 
 export const fetchWordData = async (word) => {
