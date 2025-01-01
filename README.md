@@ -2,6 +2,7 @@ This application is a Next.js 15 React Application. It was built for helping stu
 
 Back-end
 - There is no back-end server for this application. Discussing what was needed for my capstone with my mentor, I was told it would be okay to have an application that was only front end. To that effect, I do not have an ERD for the application.
+- API_KEYs have been abstracted into environmental variables however with how next.js works and since I do not have a backend these keys need to be made accessible to the browser. I would normally not do this, but since I do not have a backend in this version of my application it has been done. This will be corrected and addressed in future modifications to this application when a backend is added for user sign-in/ups and tracking of user data.
 
 API
 - The word lists are put in as matrices that can be read through by the application. These matrices use words from the school spelling lists that are included in the Merriam-Webster API. The API is very lacking in having all of the words on the spelling lists, thus every list has been fully tested to assure the words are contained in the API.
