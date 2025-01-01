@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = '73adfb26-6b8c-4230-b09f-dd0817e820b9';
+const API_KEY = process.env.NEXT_PUBLIC_ELEMENTARY_API_KEY;
 const BASE_URL = `https://www.dictionaryapi.com/api/v3/references/sd2/json/`;
 
 export const fetchWordData = async (word) => {
