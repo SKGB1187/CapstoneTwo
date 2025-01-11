@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import WordCard from './WordCard';
 import { getRandomWordFromList } from '../utils/getRandomWord';
-import { fetchWordData } from '../utils/elementaryAPI';
 import SpellingInput from './SpellingInput';
 import SummaryCard from './SummaryCard';
 
@@ -16,16 +15,24 @@ export default function WordPracticeElementary({ listName }) {
   const fetchWord = async () => {
     try {
       const randomWord = getRandomWordFromList(listName);
-      const wordInfo = await fetchWordData(randomWord);
+
+      const response = await fetch(`/api/elementary?word=${randomWord}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch word data.");
+      }
+  
+      const wordInfo = await response.json();
+  
       setWordData(wordInfo);
-      setTypedWord('');
+      setTypedWord("");
       setIsCorrect(null);
       setIsSpelling(false);
       setShowSummary(false);
     } catch (error) {
-      console.error('Error fetching word:', error);
+      console.error("Error fetching word:", error);
     }
   };
+  
 
   const handleInputChange = (e) => {
     setTypedWord(e.target.value);

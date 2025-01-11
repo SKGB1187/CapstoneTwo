@@ -18,11 +18,13 @@ export const metadata = {
   description: "Spelling Bee Practice Application for Elementary and Middle school students.",
 };
 
+import SessionProviderWrapper from './components/SessionProviderWrapper';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <SessionProviderWrapper>{children}</SessionProviderWrapper>
       </body>
     </html>
   );

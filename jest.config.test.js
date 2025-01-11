@@ -1,7 +1,8 @@
 module.exports = {
+    testMatch: ["<rootDir>/tests/**/*.test.js"],
     testEnvironment: "jest-environment-jsdom",
     transform: {
-      "^.+\\.[tj]sx?$": "babel-jest", // Transform .js, .jsx, .ts, and .tsx files
+      "^.+\\.[tj]sx?$": "babel-jest",
     },
-    moduleFileExtensions: ["js", "jsx", "json", "node"], // Recognize JSX files
+    moduleFileExtensions: ["js", "jsx", "json", "node"],
   };

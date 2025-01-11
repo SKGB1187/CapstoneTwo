@@ -1,14 +1,14 @@
-'use client'
-import React, { useState } from 'react';
-import WordCard from './WordCard';
-import { getRandomWordFromList } from '../utils/getRandomWord';
-import { fetchWordData } from '../utils/collegiateAPI';
-import SpellingInput from './SpellingInput';
-import SummaryCard from './SummaryCard';
+"use client";
+
+import React, { useState } from "react";
+import WordCard from "./WordCard";
+import { getRandomWordFromList } from "../utils/getRandomWord";
+import SpellingInput from "./SpellingInput";
+import SummaryCard from "./SummaryCard";
 
 export default function WordPracticeCollegiate({ listName }) {
   const [wordData, setWordData] = useState(null);
-  const [typedWord, setTypedWord] = useState('');
+  const [typedWord, setTypedWord] = useState("");
   const [isCorrect, setIsCorrect] = useState(null);
   const [isSpelling, setIsSpelling] = useState(false);
   const [showSummary, setShowSummary] = useState(false);
@@ -16,14 +16,21 @@ export default function WordPracticeCollegiate({ listName }) {
   const fetchWord = async () => {
     try {
       const randomWord = getRandomWordFromList(listName);
-      const wordInfo = await fetchWordData(randomWord);
+
+      const response = await fetch(`/api/collegiate?word=${randomWord}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch word data.");
+      }
+
+      const wordInfo = await response.json();
+
       setWordData(wordInfo);
-      setTypedWord('');
+      setTypedWord("");
       setIsCorrect(null);
       setIsSpelling(false);
       setShowSummary(false);
     } catch (error) {
-      console.error('Error fetching word:', error);
+      console.error("Error fetching word:", error);
     }
   };
 
@@ -37,8 +44,8 @@ export default function WordPracticeCollegiate({ listName }) {
     } else {
       setIsCorrect(false);
     }
-    setShowSummary(true); 
-    setIsSpelling(false); 
+    setShowSummary(true);
+    setIsSpelling(false);
   };
 
   const handleNextWord = () => {
@@ -47,7 +54,7 @@ export default function WordPracticeCollegiate({ listName }) {
 
   return (
     <div>
-      <div style={{ margin: '20px 0' }}>
+      <div style={{ margin: "20px 0" }}>
         <button className="btn btn-light" onClick={fetchWord}>
           Get a Word from {listName.charAt(0).toUpperCase() + listName.slice(1)}
         </button>
@@ -81,4 +88,3 @@ export default function WordPracticeCollegiate({ listName }) {
     </div>
   );
 }
-

@@ -1,8 +1,10 @@
 This application is a Next.js 15 React Application. It was built for helping students study for the Scripps National Spelling Bee. The Scripps National Spelling Bee produces a list of over 4000 words each year for students to study from. This list is broken down into three categories: One Bee (1-3 grades), Two Bee (4-6 grades), and Three Bee (7-8 grades). With the lists further divided in school spelling lists and general study lists. This application takes the school spelling lists and allows students to study for the spelling bee similarly to how they would receive words in an actual spelling bee.
 
+ERD
+- The ERD is located in the ERD.sql file within the project folder. This is a very simple data schema.
+
 Back-end
-- There is no back-end server for this application. Discussing what was needed for my capstone with my mentor, I was told it would be okay to have an application that was only front end. To that effect, I do not have an ERD for the application.
-- API_KEYs have been abstracted into environmental variables however with how next.js works and since I do not have a backend these keys need to be made accessible to the browser. I would normally not do this, but since I do not have a backend in this version of my application it has been done. This will be corrected and addressed in future modifications to this application when a backend is added for user sign-in/ups and tracking of user data.
+- A basic backend server was implemented in the next.js 15 application utilizing the server side routing native to next.js 15. This server side routing utilizes API routes for generating server side code. The API routes that were implemented were for login and signup as well as for calling both the elementary and collegiate Merriam-Webster APIs. The database for storing the signup and login information utilizes Neon for Vercel. This is a postgres server that is easy to integrate with next.js 15 React applications.
 
 API
 - The word lists are put in as matrices that can be read through by the application. These matrices use words from the school spelling lists that are included in the Merriam-Webster API. The API is very lacking in having all of the words on the spelling lists, thus every list has been fully tested to assure the words are contained in the API.
@@ -11,3 +13,4 @@ API
 
 Testing
 - To get testing to work with next.js 15 and with Jest, a babel.config.js and jest.config.js file were created. These break functionality when running the application, so they have been renamed to filename.test.js for now. If you need to run the tests you can rename them to their original names, but make sure to return them to the filename.test.js.
+- A lot of manual testing was performed on the entire application in order to make sure that the application was functioning. This was done as it is good practice and due to the difficulty with testing using Jest with React. Some but not all of the manual testing that was perfomed but cannot be seen in testing files is: login, signup, signout, state management (switch from one list to another and when you go back to the first list it picks up at the next word after the word you stopped on in the list), button/links are routing correctly, css is being applied across all pages word lists are returning words that are found by the API (words not found have been removed from the spelling lists for usability by the target audience).
