@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import SpeakerButton from './SpeakerButton';
 
-const WordCard = ({ wordData, isSpelling, handleSpellButtonClick }) => {
-  const [isSpeaking, setIsSpeaking] = useState(false); 
+const WordCard = ({ wordData, isSpelling, handleSpellButtonClick, handleSkipWord }) => {
+  const [isSpeaking, setIsSpeaking] = useState(false);
 
   if (!wordData) return null;
 
@@ -10,8 +10,7 @@ const WordCard = ({ wordData, isSpelling, handleSpellButtonClick }) => {
     <div>
       <h1 className="p-2 bg-dark text-light rounded">Let's Practice for the Spelling Bee!</h1>
       <p className="p-2 bg-dark text-light rounded">
-        To use this application make sure to have a speaker or headphones ready to hear 
-        the words you are practicing. 
+        To use this application, make sure to have a speaker or headphones ready to hear the words you are practicing.
       </p>
       {!isSpelling ? (
         <>
@@ -49,9 +48,14 @@ const WordCard = ({ wordData, isSpelling, handleSpellButtonClick }) => {
               setIsSpeaking={setIsSpeaking}
             />
           </div>
-          <button className="btn btn-light btn-block mt-3" onClick={handleSpellButtonClick}>
-            Ready to Spell?
-          </button>
+          <div className="d-grid gap-2 d-md-block">
+            <button className="btn btn-light me-2" onClick={handleSpellButtonClick}>
+              Ready to Spell?
+            </button>
+            <button className="btn btn-light ms-2" onClick={handleSkipWord}>
+              Skip Word
+            </button>
+          </div>
         </>
       ) : (
         <p></p>

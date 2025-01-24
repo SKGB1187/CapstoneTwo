@@ -1,0 +1,1 @@
+This README.md is intended for Hatchways use only. This resubmission takes into account all comments provided both in the Hatchways Submission page and in the email received with feedback. Please refer to the ResponseToHatchwaysResults.md and the ResponseToHatchyReviewer.md files in this resubmission to see what has been done to address the comments.

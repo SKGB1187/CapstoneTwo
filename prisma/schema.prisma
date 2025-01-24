@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,10 +8,26 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        Int             @id @default(autoincrement())
   name      String?
-  email     String   @unique
+  email     String          @unique
   password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+  progress  UserProgress[]  // Relation to UserProgress
+}
+
+model UserProgress {
+  id        Int           @id @default(autoincrement())
+  userId    Int
+  word      String         // Tracks the specific word the user is working on
+  listName  String         // Tracks the word list (e.g., "One Bee School List")
+  status    String         // e.g., "completed", "in progress", "skipped"
+  attempts  Int            @default(0)
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  user      User           @relation(fields: [userId], references: [id])
+
+  @@unique([userId, word, listName]) // Compound unique constraint
 }
